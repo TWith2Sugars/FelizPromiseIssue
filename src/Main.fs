@@ -22,24 +22,21 @@ let update msg state =
 [<ReactComponent>]
 let Counter() =
     let state, dispatch = React.useElmish(init, update, [| |])
-    let incrementClick = React.useCallback(fun _ -> dispatch Increment)
-    let decrementClick = React.useCallback(fun _ -> dispatch Decrement)
-    let incrementAgainClick = React.useCallback(fun _ -> dispatch IncrementAgain)
     Html.div [
         Html.h1 state.Count
         Html.button [
             prop.text "Increment"
-            prop.onClick incrementClick
+            prop.onClick (fun _ -> dispatch Increment)
         ]
 
         Html.button [
             prop.text "Increment Again"
-            prop.onClick incrementAgainClick
+            prop.onClick (fun _ -> dispatch IncrementAgain)
         ]
 
         Html.button [
             prop.text "Decrement"
-            prop.onClick decrementClick
+            prop.onClick (fun _ -> dispatch Decrement)
         ]
     ]
 
